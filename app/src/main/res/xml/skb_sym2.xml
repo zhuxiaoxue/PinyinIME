@@ -20,7 +20,7 @@
   height="25%p"
   key_type="0"
   repeat="false"
-  balloon="true">
+  balloon="false">
 
   <row>
     <keys splitter="|" labels="~|±|×|÷|•|°|&lt;|&gt;|{|}"/>

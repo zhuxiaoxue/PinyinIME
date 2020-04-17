@@ -224,6 +224,8 @@ public class CandidateView extends View {
 
     private int mLocationTmp[] = new int[2];
 
+    private static final boolean SHOW_BOOLEAN = false;
+
     public CandidateView(Context context, AttributeSet attrs) {
         super(context, attrs);
 
@@ -235,7 +237,7 @@ public class CandidateView extends View {
             mShowFootnote = false;
         }
 
-        mActiveCellDrawable = r.getDrawable(R.drawable.candidate_hl_bg);
+        mActiveCellDrawable = r.getDrawable(R.drawable.candidate_hl_bg1);
         mSeparatorDrawable = r.getDrawable(R.drawable.candidates_vertical_line);
         mCandidateMargin = r.getDimension(R.dimen.candidate_margin_left_right);
 
@@ -686,6 +688,9 @@ public class CandidateView extends View {
     }
 
     private void showBalloon(int candPos, boolean delayedShow) {
+        if (!SHOW_BOOLEAN) {
+            return;
+        }
         mBalloonHint.removeTimer();
 
         RectF r = mCandRects.elementAt(candPos);

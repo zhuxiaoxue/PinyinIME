@@ -184,9 +184,9 @@ public class Environment {
 
     public int getSkbHeight() {
         if (Configuration.ORIENTATION_PORTRAIT == mConfig.orientation) {
-            return mKeyHeight * 4;
+            return mKeyHeight * 4 - 100;
         } else if (Configuration.ORIENTATION_LANDSCAPE == mConfig.orientation) {
-            return mKeyHeight * 4;
+            return mKeyHeight * 4 - 100;
         }
         return 0;
     }

@@ -302,7 +302,7 @@ public class XmlKeyboardLoader {
 
         KeyCommonAttributes(XmlResourceParser xrp) {
             mXrp = xrp;
-            balloon = true;
+            balloon = false;
         }
 
         // Make sure the default object is not null.

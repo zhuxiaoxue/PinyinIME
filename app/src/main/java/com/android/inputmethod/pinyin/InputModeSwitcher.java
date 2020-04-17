@@ -701,7 +701,7 @@ public class InputModeSwitcher {
     public boolean tryHandleLongPressSwitch(int keyCode) {
         if (USERDEF_KEYCODE_LANG_2 == keyCode
                 || USERDEF_KEYCODE_PHONE_SYM_4 == keyCode) {
-            mImeService.showOptionsMenu();
+//            mImeService.showOptionsMenu();
             return true;
         }
         return false;
