@@ -1129,7 +1129,7 @@ public class PinyinIME extends InputMethodService {
         updateIcon(mInputModeSwitcher.requestInputWithSkb(editorInfo));
         resetToIdleState(false);
         mSkbContainer.updateInputMode();
-        setCandidatesViewShown(false);
+        setCandidatesViewShown(true);
     }
 
     @Override

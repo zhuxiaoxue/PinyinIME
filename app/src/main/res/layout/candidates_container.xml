@@ -26,7 +26,8 @@
       android:src="@drawable/arrow_left"
       android:layout_height="match_parent"
       android:layout_width="80dip"
-      android:layout_alignParentStart="true"/>
+      android:layout_alignParentStart="true"
+      android:visibility="gone"/>
 
   <ImageButton
       android:id="@+id/arrow_right_btn"
@@ -34,7 +35,8 @@
       android:src="@drawable/arrow_right"
       android:layout_width="80dip"
       android:layout_height="match_parent"
-      android:layout_alignParentEnd="true"/>
+      android:layout_alignParentEnd="true"
+      android:visibility="gone"/>
 
     <ImageButton
         android:id="@+id/hide_keyboard_btn"
