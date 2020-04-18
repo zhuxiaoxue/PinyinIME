@@ -1,3 +1,5 @@
+import java.text.SimpleDateFormat
+
 apply plugin: 'com.android.application'
 
 android {
@@ -7,8 +9,8 @@ android {
         applicationId "com.android.inputmethod.pinyin"
         minSdkVersion 22
         targetSdkVersion 29
-        versionCode 1
-        versionName "1.0"
+        versionCode getSelfDefinedVersion("code")
+        versionName getSelfDefinedVersion("name")
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         externalNativeBuild {
             cmake {
@@ -19,9 +21,20 @@ android {
             noCompress "dat"
         }
     }
+
+    signingConfigs {
+        release {
+            storeFile file("../keystore.jks")
+            storePassword '123456'
+            keyAlias 'keyboard'
+            keyPassword '123456'
+        }
+    }
+
     buildTypes {
         release {
             minifyEnabled false
+            signingConfig signingConfigs.release
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
@@ -29,6 +42,17 @@ android {
         cmake {
             path "src/main/cpp/CMakeLists.txt"
             version "3.10.2"
+        }
+    }
+
+    applicationVariants.all { variant ->
+        variant.outputs.all {
+            if (variant.name.equalsIgnoreCase('release')){
+                def df = new SimpleDateFormat("HHmmssSSS")
+                outputFileName = "PinyinIME_${defaultConfig.versionName}_${df.format(new Date())}_RELEASE.apk"
+            } else if (variant.name.equalsIgnoreCase('debug')){
+                outputFileName = "PinyinIME-${defaultConfig.versionName}-debug.apk"
+            }
         }
     }
 }
@@ -40,4 +64,22 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+}
+
+//版本自动生成
+def getSelfDefinedVersion(type) {
+    //主版本号
+    int Major_Version_Number = 1
+    //子版本号
+    int Minor_Version_Number = 1
+    //修正版本号
+    String Revision_Number = "00"
+    //编译版本号
+    int Build_Number = Integer.parseInt(new Date().format("yyMMdd"))
+
+    if ("code" == type) {
+        Build_Number
+    } else if ("name" == type) {
+        "$Major_Version_Number"+ "V" +"$Minor_Version_Number.$Revision_Number" + "_" + "$Build_Number"
+    }
 }
