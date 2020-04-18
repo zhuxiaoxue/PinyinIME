@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!-- Copyright (C) 2009 The Android Open Source Project
+<?xml version="1.0" encoding="UTF-8"?><!-- Copyright (C) 2009 The Android Open Source Project
 
      Licensed under the Apache License, Version 2.0 (the "License");
      you may not use this file except in compliance with the License.
@@ -14,24 +13,25 @@
      limitations under the License.
 -->
 <com.android.inputmethod.pinyin.SkbContainer xmlns:android="http://schemas.android.com/apk/res/android"
-  android:orientation="vertical"
-  android:background="@drawable/skb_container_bg"
-  android:layout_width="wrap_content"
-  android:layout_height="wrap_content" >
-
-  <ViewFlipper
-    android:id="@+id/alpha_floatable"
-    android:layout_alignParentBottom="true"
     android:layout_width="wrap_content"
-    android:layout_height="wrap_content" >
+    android:layout_height="wrap_content"
+    android:background="@drawable/skb_container_bg"
+    android:orientation="vertical">
 
-   <com.android.inputmethod.pinyin.SoftKeyboardView
-     android:id="@+id/alpha_view1"
-     android:layout_width="wrap_content"
-     android:layout_height="wrap_content"/>
-   <com.android.inputmethod.pinyin.SoftKeyboardView
-     android:id="@+id/alpha_view2"
-     android:layout_width="wrap_content"
-     android:layout_height="wrap_content"/>
-  </ViewFlipper>
+    <ViewFlipper
+        android:id="@+id/alpha_floatable"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true">
+
+        <com.android.inputmethod.pinyin.SoftKeyboardView
+            android:id="@+id/alpha_view1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <com.android.inputmethod.pinyin.SoftKeyboardView
+            android:id="@+id/alpha_view2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </ViewFlipper>
 </com.android.inputmethod.pinyin.SkbContainer>

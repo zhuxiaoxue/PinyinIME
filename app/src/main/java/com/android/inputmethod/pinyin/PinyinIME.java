@@ -1020,6 +1020,10 @@ public class PinyinIME extends InputMethodService {
         }
     }
 
+    /**
+     * 显示候选区
+     * @param showComposingView
+     */
     private void showCandidateWindow(boolean showComposingView) {
         if (mEnvironment.needDebug()) {
             Log.d(TAG, "Candidates window is shown. Parent = "
@@ -1319,6 +1323,11 @@ public class PinyinIME extends InputMethodService {
 
         public void onToBottomGesture() {
         }
+
+        @Override
+        public void onToHideKeyboardGesture() {
+            requestHideSelf(0);
+        }
     }
 
     public class OnGestureListener extends
@@ -1524,7 +1533,7 @@ public class PinyinIME extends InputMethodService {
         /**
          * Maximum number of candidates to display in one page.
          */
-        private static final int MAX_PAGE_SIZE_DISPLAY = 10;
+        private static final int MAX_PAGE_SIZE_DISPLAY = 15;
         /**
          * The total number of choices for display. The list may only contains
          * the first part. If user tries to navigate to next page which is not

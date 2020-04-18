@@ -79,6 +79,10 @@ public class CandidatesContainer extends RelativeLayout implements
      * The right arrow button used to show next page.
      */
     private ImageButton mRightArrowBtn;
+    /**
+     * The hide keyboard button used to hide keyboard
+     */
+    private ImageButton mHideKeyBoardBtn;
 
     /**
      * Decoding result to show.
@@ -174,6 +178,8 @@ public class CandidatesContainer extends RelativeLayout implements
 
         mLeftArrowBtn = (ImageButton) findViewById(R.id.arrow_left_btn);
         mRightArrowBtn = (ImageButton) findViewById(R.id.arrow_right_btn);
+        mHideKeyBoardBtn = (ImageButton) findViewById(R.id.hide_keyboard_btn);
+        mHideKeyBoardBtn.setOnTouchListener(this);
         mLeftArrowBtn.setOnTouchListener(this);
         mRightArrowBtn.setOnTouchListener(this);
 
@@ -189,6 +195,11 @@ public class CandidatesContainer extends RelativeLayout implements
         }
     }
 
+    /**
+     * 显示候选区
+     * @param decInfo
+     * @param enableActiveHighlight
+     */
     public void showCandidates(PinyinIME.DecodingInfo decInfo,
             boolean enableActiveHighlight) {
         if (null == decInfo) return;
@@ -198,9 +209,11 @@ public class CandidatesContainer extends RelativeLayout implements
         if (decInfo.isCandidatesListEmpty()) {
             showArrow(mLeftArrowBtn, false);
             showArrow(mRightArrowBtn, false);
+            showHideBtn(true);
         } else {
             showArrow(mLeftArrowBtn, true);
             showArrow(mRightArrowBtn, true);
+            showHideBtn(false);
         }
 
         for (int i = 0; i < mFlipper.getChildCount(); i++) {
@@ -362,12 +375,21 @@ public class CandidatesContainer extends RelativeLayout implements
             arrowBtn.setVisibility(View.INVISIBLE);
     }
 
+    private void showHideBtn(boolean show) {
+        if (show)
+            mHideKeyBoardBtn.setVisibility(View.VISIBLE);
+        else
+            mHideKeyBoardBtn.setVisibility(View.INVISIBLE);
+    }
+
     public boolean onTouch(View v, MotionEvent event) {
         if (event.getAction() == MotionEvent.ACTION_DOWN) {
             if (v == mLeftArrowBtn) {
                 mCvListener.onToRightGesture();
             } else if (v == mRightArrowBtn) {
                 mCvListener.onToLeftGesture();
+            } else if (v == mHideKeyBoardBtn) {
+                mCvListener.onToHideKeyboardGesture();
             }
         } else if (event.getAction() == MotionEvent.ACTION_UP) {
             CandidateView cv = (CandidateView) mFlipper.getCurrentView();
